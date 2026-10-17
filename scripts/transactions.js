@@ -95,7 +95,7 @@ const showData = (data, mark, currency) => {
                         </div>
                         <div class="field">
                             <label for="${data.id}-description">Description:</label>
-                            <input type="text" value="${data.description}" minlength="5" id="${data.id}-description" placeholder="Example: Lunch at KFC" required>
+                            <input type="text" value="${data.description}" pattern="^\\S(?:.*\\S)?$" title="No trailing spaces allowed." minlength="5" id="${data.id}-description" placeholder="Example: Lunch at KFC" required>
                         </div>
                         <div class="selects" id="select_container">
                             <div class="field">
@@ -113,7 +113,7 @@ const showData = (data, mark, currency) => {
                         </div>
                         <div class="field hidd" id="${data.id}-others-input">
                             <label for="${data.id}-others">Others</label>
-                            <input type="text" pattern="^[A-Za-z]*$" title="Categories can only contain letters" id="${data.id}-others" placeholder="Others: Clothing">
+                            <input type="text" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Only letters, spaces and hyphens '-'" id="${data.id}-others" placeholder="Others: Clothing">
                         </div>
                         <button type="submit" onClick="editTransaction(${data.id})" class="primary">Submit</button>
                     </form>
@@ -144,10 +144,10 @@ const othersInput = document.getElementById("others");
 
 select.addEventListener("change", (event) => {
     if (event.target.value == "other") {
-        othersInput.setAttribute("required", "")
+        othersInput.setAttribute("required", "");
         othersField.classList.remove("hidd");
     } else {
-        othersInput.setAttribute("required", "")
+        othersInput.removeAttribute("required", "");
         othersField.classList.add("hidd");
     }
 })

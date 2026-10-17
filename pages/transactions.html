@@ -92,8 +92,8 @@
                     </div>
                     <div class="field">
                         <label for="description">Description:</label>
-                        <input type="text" minlength="3" id="description" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$"
-                            title="Descriptions can only contain letters, spaces, and hyphens '-'"
+                        <input type="text" minlength="3" id="description" pattern="^\S(?:.*\S)?$"
+                            title="No trailing spaces allowed."
                             placeholder="Example: Lunch at KFC" required>
                     </div>
                     <div class="selects" id="select_container">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="field hidd" id="others-input">
                         <label for="others">Others</label>
-                        <input type="text" id="others" placeholder="Others: Clothing">
+                        <input type="text" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Only letters, spaces and hyphens '-'" id="others" placeholder="Others: Clothing">
                     </div>
                     <button type="submit" class="primary">Submit</button>
                 </form>
