@@ -134,7 +134,9 @@ main .prod-display {
 }
 
 main .prod-display div {
-  background: white;
+  background: url(../assets/images/bg-phone.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
   border-radius: 8px 8px 0px 0px;
   height: 100%;
   width: 100%;
@@ -177,6 +179,10 @@ button span {
   #home header button {
     padding: 14px 14px 14px 12px;
   }
+
+  main .prod-display div {
+    background: url(../assets/images/bg-pc.png);
+  }
 }
 
 @media screen and (width >= 360px) {
@@ -191,6 +197,10 @@ button span {
 }
 
 @media screen and (width >= 1024px) {
+  main .prod-display div {
+    background-size: 100%;
+  }
+  
   main h1 {
     font-size: 5.5em;
   }
