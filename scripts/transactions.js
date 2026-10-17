@@ -2,7 +2,7 @@ const form_trigger = document.getElementById("add_transaction");
 const form_close = document.getElementById("form_close");
 const form_container = document.getElementById("form-container");
 const form = document.getElementById("form");
-
+const exportButton = document.getElementById("export");
 
 form_trigger.addEventListener("click", () => {
     form_container.classList.remove("hidden");
@@ -129,8 +129,8 @@ const data = JSON.parse(localStorage.getItem("data")) || null;
 
 if (data && data.transactions) {
     showData(data.transactions, "", data.currency || "$");
-} else {
-    options.style += "display: none;";
+    exportButton.classList.remove("hid");
+    options.classList.remove("hidd");
 };
 
 const select = document.getElementById("category");
@@ -308,5 +308,23 @@ importBtn.addEventListener("click", async () => {
 
         localStorage.setItem("data", JSON.stringify(data));
         showData(data.transactions, "", data.currency || "$");
+        exportButton.classList.remove("hid");
     }
 });
+
+let exportHandle;
+exportButton.addEventListener("click", async () => {
+    const data = JSON.stringify(JSON.parse(localStorage.getItem("data")).transactions);
+    exportHandle = await window.showSaveFilePicker({
+        types: [{
+            description: "JSON",
+            accept: {
+                "json/*": [".json"]
+            }
+        }]
+    });
+
+    let stream = await exportHandle.createWritable();
+    await stream.write(data);
+    await stream.close()
+})

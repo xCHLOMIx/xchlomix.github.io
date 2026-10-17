@@ -283,6 +283,10 @@ button#delete:hover {
   visibility: hidden;
 }
 
+.hidd {
+  display: none;
+}
+
 @media screen and (width >= 768px) {
   .options {
     align-items: center;

@@ -3,6 +3,7 @@ const form_close = document.getElementById("form_close");
 const form_container = document.getElementById("form-container");
 const form = document.getElementById("form");
 const exportButton = document.getElementById("export");
+const options = document.getElementById("options");
 
 form_trigger.addEventListener("click", () => {
     form_container.classList.remove("hidden");
@@ -156,9 +157,9 @@ const showData = (data, mark, currency) => {
 const data = JSON.parse(localStorage.getItem("data")) || null;
 if (data != null && data.budgets) {
     showData(data.budgets, "", data.currency || "$");
-} else {
-    exportButton.classList.add("hid");
-};
+    exportButton.classList.remove("hid")
+    options.classList.remove("hidd");
+}
 
 const deleteBudget = (id) => {
     let data = JSON.parse(localStorage.getItem("data")) || null;
@@ -344,6 +345,7 @@ importButton.addEventListener("click", async () => {
         localStorage.setItem("data", JSON.stringify(data));
         showData(data.budgets, "", data.currency || "$");
         exportButton.classList.remove("hid");
+        options.classList.remove("hidd");
     }
 });
 
