@@ -72,14 +72,14 @@ const showData = (data, mark, currency) => {
     const htmlCode = data.map((data) => `
         <tr>
             <td>${(mark && mark.includes(data) ? "<mark>" + data.name + "</mark>" : data.name)}</td>
-            <td>${currency} ${data.food}</td>
-            <td>${data.books}</td>
-            <td>${data.transport}</td>
-            <td>${data.entertainment}</td>
-            <td>${data.fees}</td>
-            <td>${data.others}</td>
-            <td>${data.start_date}</td>
-            <td>${data.end_date}</td>
+            <td>${currency || "$"} ${data.food}</td>
+            <td>${currency || "$"} ${data.books}</td>
+            <td>${currency || "$"} ${data.transport}</td>
+            <td>${currency || "$"} ${data.entertainment}</td>
+            <td>${currency || "$"} ${data.fees}</td>
+            <td>${currency || "$"} ${data.others}</td>
+            <td>${currency || "$"} ${data.start_date}</td>
+            <td>${currency || "$"} ${data.end_date}</td>
             <td>
                 <div class="del-pop hidden-pop" id="${data.id}">
                     <div class="message-container">

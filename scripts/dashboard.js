@@ -91,7 +91,7 @@ const updateTransactionsData = (data) => {
         updateMessage(data, totalTransactionsAmount);
 
         topCategoryEl.innerText = topCategory.category;
-        transactions_amount.textContent = `${data.currency} ${(totalTransactionsAmount * getRate()).toLocaleString()}`;
+        transactions_amount.textContent = `${data.currency || "$"} ${(totalTransactionsAmount * getRate()).toLocaleString()}`;
         transactions_number.textContent = data.transactions.length;
     }
 }
