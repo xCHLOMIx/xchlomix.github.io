@@ -100,7 +100,7 @@ const showData = (data, mark, currency) => {
                     <form id="${data.id}-form">
                         <div class="field">
                             <label for="${data.id}-name">Budget name:</label>
-                            <input type="text" value="${data.name}" name="${data.id}-name" id="${data.id}-name" placeholder="Ex: June Budget" required>
+                            <input type="text" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Names can only contain letters, spaces and hyphens '-'" value="${data.name}" name="${data.id}-name" id="${data.id}-name" placeholder="Ex: June Budget" required>
                         </div>
                         <div class="group">
                             <div class="field">

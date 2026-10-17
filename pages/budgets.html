@@ -86,7 +86,7 @@
                 <form id="form">
                     <div class="field">
                         <label for="name">Budget name:</label>
-                        <input type="text" name="name" id="name" placeholder="Ex: June Budget" required>
+                        <input type="text" name="name" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Names can only contain letter, spaces and hyphens '-'" id="name" placeholder="Ex: June Budget" required>
                     </div>
                     <div class="group">
                         <div class="field">

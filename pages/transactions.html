@@ -87,12 +87,14 @@
                 <form id="form">
                     <div class="field">
                         <label for="amount">Amount ($):</label>
-                        <input type="number" id="amount" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 500"
-                            required>
+                        <input type="number" id="amount" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$"
+                            title="Must be a numeric value" placeholder="Example: 500" required>
                     </div>
                     <div class="field">
                         <label for="description">Description:</label>
-                        <input type="text" minlength="3" id="description" placeholder="Example: Lunch at KFC" required>
+                        <input type="text" minlength="3" id="description" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$"
+                            title="Descriptions can only contain letters, spaces, and hyphens '-'"
+                            placeholder="Example: Lunch at KFC" required>
                     </div>
                     <div class="selects" id="select_container">
                         <div class="field">
@@ -108,7 +110,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="field">
+                    <div class="field hidd" id="others-input">
                         <label for="others">Others</label>
                         <input type="text" id="others" placeholder="Others: Clothes">
                     </div>

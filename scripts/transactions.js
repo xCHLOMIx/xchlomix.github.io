@@ -17,13 +17,15 @@ const formHandle = () => {
     const amount = document.getElementById("amount");
     const description = document.getElementById("description");
     const category = document.getElementById("category");
+    const othersInput = document.getElementById("others");
+
     const date = new Date();
 
     const transaction = {
         id: data == null || data.transactions == null ? 1 : data.transactions[data.transactions.length - 1].id + 1,
         amount: parseFloat(amount.value),
         description: description.value,
-        category: category.value,
+        category: category.value == "other" ? othersInput.value : category.value,
         createdAt: `${String(date.getDate()).padStart(2, "0")}-${String(date.getMonth()).padStart(2, "0")}-${String(date.getFullYear()).padStart(2, "0")}-${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`
     };
 
@@ -133,19 +135,19 @@ if (data && data.transactions) {
 };
 
 const select = document.getElementById("category");
-// select.addEventListener("change", (event) => {
-//     const select_container = document.getElementById("select_container");
-//     console.log(other)
-//     if (event.target.value === "other") {
-//         select_container.innerHTML += `<div class="field" id="other">
-//                             <label for="other_category">Other category:</label>
-//                             <input type="text" minlength="5" id="other_category" placeholder="Example: Hobby" required>
-//                         </div>`
-//         // other.remove()
-//         select_container.appendChild(
-//         )
-//     }
-// })
+const othersField = document.getElementById("others-input");
+const othersInput = document.getElementById("others");
+select.addEventListener("change", (event) => {
+    console.log(event.target.value);
+    if (event.target.value == "other") {
+        othersInput.setAttribute("required", "")
+        othersField.classList.remove("hidd");
+    } else {
+        console.log("yes")
+        othersInput.setAttribute("required", "")
+        othersField.classList.add("hidd");
+    }
+})
 
 const deleteTransaction = (id) => {
     let data = JSON.parse(localStorage.getItem("data")) || null;
@@ -241,9 +243,6 @@ sortingSelect.addEventListener("change", (event) => {
             newTransactions = transactions.sort((a, b) => (a.description.toUpperCase() > b.description.toUpperCase() ? 0 : -1));
             break;
     }
-
-    // console.log(transactions.sort((a, b) => a.amount - b.amount))
-    // console.log(event.target.value)
 
     showData(newTransactions, "", data.currency || "$");
 })
