@@ -90,17 +90,17 @@ const showData = (data, mark, currency) => {
                     </div>
                     <form id="${data.id}-form">
                         <div class="field">
-                            <label for="amount">Amount ($):</label>
+                            <label for="${data.id}-amount">Amount ($):</label>
                             <input type="number" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" value=${parseFloat(data.amount)} id="${data.id}-amount" title="Must be a numeric value" placeholder="Example: 500"required>
                         </div>
                         <div class="field">
-                            <label for="description">Description:</label>
+                            <label for="${data.id}-description">Description:</label>
                             <input type="text" value="${data.description}" minlength="5" id="${data.id}-description" placeholder="Example: Lunch at KFC" required>
                         </div>
                         <div class="selects" id="select_container">
                             <div class="field">
                                 <label for="category">Category:</label>
-                                <select name="category" value="${data.category}" id="${data.id}-category" required>
+                                <select name="category" onchange="handleEditCategory(${data.id})" value="${data.category}" id="${data.id}-category" required>
                                     <option value="">Select category</option>
                                     <option value="food">Food</option>
                                     <option value="books">Books</option>
@@ -110,6 +110,10 @@ const showData = (data, mark, currency) => {
                                     <option value="other">Other</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="field hidd" id="${data.id}-others-input">
+                            <label for="${data.id}-others">Others</label>
+                            <input type="text" pattern="^[A-Za-z]*$" title="Categories can only contain letters" id="${data.id}-others" placeholder="Others: Clothing">
                         </div>
                         <button type="submit" onClick="editTransaction(${data.id})" class="primary">Submit</button>
                     </form>
@@ -137,13 +141,12 @@ if (data && data.transactions) {
 const select = document.getElementById("category");
 const othersField = document.getElementById("others-input");
 const othersInput = document.getElementById("others");
+
 select.addEventListener("change", (event) => {
-    console.log(event.target.value);
     if (event.target.value == "other") {
         othersInput.setAttribute("required", "")
         othersField.classList.remove("hidd");
     } else {
-        console.log("yes")
         othersInput.setAttribute("required", "")
         othersField.classList.add("hidd");
     }
@@ -184,11 +187,14 @@ const editTransaction = (id) => {
         const amount = document.getElementById(`${id}-amount`);
         const description = document.getElementById(`${id}-description`);
         const category = document.getElementById(`${id}-category`);
+        const othersInput = document.getElementById(`${id}-others`);
+
         const date = new Date();
+
         let transaction = data.transactions.find((item) => item.id == id);
         transaction.amount = parseFloat(amount.value);
         transaction.description = description.value;
-        transaction.category = category.value;
+        transaction.category = category.value == "other" ? othersInput.value : category.value;
         transaction.updatedAt = `${String(date.getDate()).padStart(2, "0")}-${String(date.getMonth()).padStart(2, "0")}-${String(date.getFullYear()).padStart(2, "0")}-${String(date.getHours()).padStart(2, "0")}-${String(date.getMinutes()).padStart(2, "0")}-${String(date.getSeconds())}`;
 
         data = { ...data, transactions: data.transactions.filter((item) => item.id != id) };
@@ -215,6 +221,23 @@ searchInput.addEventListener("input", (event) => {
         console.log("Sorry, there was an error!")
     }
 });
+
+// Handling others category in edit
+const handleEditCategory = (id) => {
+    const select = document.getElementById(`${id}-category`);
+    const othersField = document.getElementById(`${id}-others-input`);
+    const othersInput = document.getElementById(`${id}-others`);
+    select.addEventListener("change", (event) => {
+        console.log(event.target.value)
+        if (event.target.value == "other") {
+            othersInput.setAttribute("required", "");
+            othersField.classList.remove("hidd");
+        } else {
+            othersInput.setAttribute("required", "");
+            othersField.classList.add("hidd");
+        }
+    });
+}
 
 // Sorting functionality
 const sortingSelect = document.getElementById("sorting");

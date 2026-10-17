@@ -73,6 +73,16 @@ section {
   height: 527px;
 }
 
+.message {
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+#white {
+  color: white;
+}
+
 .item span.first {
   background: #747354;
   padding: 16px;
