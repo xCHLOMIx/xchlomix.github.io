@@ -243,7 +243,8 @@ searchInput.addEventListener("input", (event) => {
 
 const sortingSelect = document.getElementById("sorting");
 sortingSelect.addEventListener("change", (event) => {
-    const budgets = JSON.parse(localStorage.getItem("data")).budgets || null;
+    const data = JSON.parse(localStorage.getItem("data")) || null;
+    const budgets = data.budgets;
     let newBudgets;
 
     switch (event.target.value) {
@@ -254,15 +255,14 @@ sortingSelect.addEventListener("change", (event) => {
             newBudgets = budgets.sort((a, b) => (a.name.toUpperCase() > b.name.toUpperCase() ? 0 : -1));
             break;
         case 'start_date-a':
-            newBudgets = budgets.sort((a, b) => (a.name.start_date > b.name.toUpperCase() ? 0 : -1));
+            newBudgets = budgets.sort((a, b) => (a.name.start_date > b.name.toUpperCase() ? -1 : 0));
             break;
         case 'start_date-d':
             newBudgets = budgets.sort((a, b) => (a.name.start_date > b.name.toUpperCase() ? 0 : -1));
             break;
-
     }
 
-    showData(newBudgets);
+    showData(newBudgets, "", data.currency || "$");
 })
 
 // Import Budget data
@@ -277,7 +277,9 @@ importButton.addEventListener("click", async () => {
                     "json/*": [".json"]
                 }
             }
-        ]
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false,
     });
     const file = await fileHandle.getFile();
     const fileText = await file.text();
@@ -358,7 +360,9 @@ exportButton.addEventListener("click", async () => {
             accept: {
                 "json/*": [".json"]
             }
-        }]
+        }], 
+        excludeAcceptAllOption: true,
+        multiple: false
     });
 
     let stream = await exportHandle.createWritable();

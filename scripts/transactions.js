@@ -62,7 +62,6 @@ const showData = (data, mark, currency) => {
             rate = 130.10
     }
 
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 0));
     const tableBody = document.getElementById("table");
     const htmlCode = data.map((data) => `
         <tr>
@@ -239,8 +238,12 @@ sortingSelect.addEventListener("change", (event) => {
             newTransactions = transactions.sort((a, b) => (a.description.toUpperCase() > b.description.toUpperCase() ? -1 : 0));
             break;
         case 'description-a':
-            newTransactions = transactions.sort((a, b) => (a.description.toUpperCase() > b.description.toUpperCase() ? 0 : -1))
+            newTransactions = transactions.sort((a, b) => (a.description.toUpperCase() > b.description.toUpperCase() ? 0 : -1));
+            break;
     }
+
+    // console.log(transactions.sort((a, b) => a.amount - b.amount))
+    // console.log(event.target.value)
 
     showData(newTransactions, "", data.currency || "$");
 })
@@ -258,7 +261,9 @@ importBtn.addEventListener("click", async () => {
                     "json/*": [".json"]
                 }
             }
-        ]
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false,
     });
     const file = await fileHandle.getFile();
     const fileText = await file.text();
@@ -309,6 +314,7 @@ importBtn.addEventListener("click", async () => {
         localStorage.setItem("data", JSON.stringify(data));
         showData(data.transactions, "", data.currency || "$");
         exportButton.classList.remove("hid");
+        options.classList.remove("hidd")
     }
 });
 
@@ -321,7 +327,9 @@ exportButton.addEventListener("click", async () => {
             accept: {
                 "json/*": [".json"]
             }
-        }]
+        }],
+        excludeAcceptAllOption: true,
+        multiple: false,
     });
 
     let stream = await exportHandle.createWritable();

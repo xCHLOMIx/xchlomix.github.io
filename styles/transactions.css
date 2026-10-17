@@ -10,6 +10,8 @@ section {
 section .head {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 14px;
 }
 
 button.primary {
@@ -50,6 +52,7 @@ button.primary span {
 .head .buttons {
   display: flex;
   gap: 12px;
+  align-self: flex-end;
 }
 
 div.form-container {
@@ -295,6 +298,10 @@ button#delete:hover {
 
   button.primary span {
     display: block;
+  }
+
+  section .head {
+    flex-direction: row;
   }
 
   table {
