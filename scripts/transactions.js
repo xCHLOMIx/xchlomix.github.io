@@ -303,6 +303,9 @@ importBtn.addEventListener("click", async () => {
                     && Object.keys(json[i]).includes("description")
                     && Object.keys(json[i]).includes("category")
                     && Object.keys(json[i]).includes("createdAt")
+                    && /^(0|[1-9]\d*)(\.\d{1,2})?$/.test(json[i].amount)
+                    && /^\S(?:.*\S)?$/.test(json[i].description)
+                    && /^[A-Za-z]+(?:[ \\-][A-Za-z]+)*$/.test(json[i].category)
                     && typeof (json[i].id) == "number"
                     && typeof (json[i].amount) == "number"
                     && typeof (json[i].description) == "string"
@@ -311,6 +314,7 @@ importBtn.addEventListener("click", async () => {
                 ) {
                     continue;
                 } else {
+                    alert("Invalid JSON");
                     return false;
                 }
             }
