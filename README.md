@@ -25,3 +25,8 @@
 
 - ## How to run tests
 1. To run end-to-end tests you can visit the app's link [here](https://xchlomix.github.io/)
+
+- ## Links
+1. Links to "seed.json" [here](https://drive.google.com/file/d/1IDmAL8KpvV__IzPgQ6K9SmXSrn0vNv1z/view?usp=sharing)
+2. Link to assignment report [here](https://drive.google.com/file/d/157bbcCdJq0HEABiZOBfejkdhRWWQO2MM/view?usp=sharing)
+3. Link to the youtube video [here](https://youtu.be/hg7oK1bM2YI)
