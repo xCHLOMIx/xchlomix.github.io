@@ -329,8 +329,6 @@ importButton.addEventListener("click", async () => {
                     && Object.keys(json[i]).includes("createdAt")
                     && typeof (json[i].id) == "number"
                     && /^(0|[1-9]\d*)(\.\d{1,2})?$/.test(json[i].food)
-                    && /^[A-Za-z]+(?:[ \-][A-Za-z]+)*$/.test(json[i].name)
-                    && /\b(\w+)\s+\1\b/.test(json[i].name)
                     && /^(0|[1-9]\d*)(\.\d{1,2})?$/.test(json[i].books)
                     && /^(0|[1-9]\d*)(\.\d{1,2})?$/.test(json[i].transport)
                     && /^(0|[1-9]\d*)(\.\d{1,2})?$/.test(json[i].entertainment)
@@ -392,7 +390,7 @@ exportButton.addEventListener("click", async () => {
             }
         }], 
         excludeAcceptAllOption: true,
-        multiple: false
+        multiple: false,
     });
 
     let stream = await exportHandle.createWritable();
