@@ -1,0 +1,53 @@
+{
+    "budgets": [
+        {
+            "id": 1,
+            "name": "September Student Budget",
+            "start_date": "2026-09-01",
+            "end_date": "2026-09-30",
+            "food": 120,
+            "books": 45,
+            "transport": 60,
+            "entertainment": 30,
+            "fees": 200,
+            "others": 25,
+            "createdAt": "01-09-2026-09-00-00"
+        },
+        {
+            "id": 2,
+            "name": "October Student Budget",
+            "start_date": "2026-10-31",
+            "end_date": "2026-10-01",
+            "food": 150,
+            "books": 35,
+            "transport": 75,
+            "entertainment": 40,
+            "fees": 200,
+            "others": 50,
+            "createdAt": "01-10-2026-09-00-00"
+        }
+    ],
+    "transactions": [
+        {
+            "id": 1,
+            "amount": 25.50,
+            "description": "Lunch at KFC",
+            "category": "food",
+            "createdAt": "01-10-2026-12:30:00"
+        },
+        {
+            "id": 2,
+            "amount": 15.00,
+            "description": "Bus fare to school",
+            "category": "transport",
+            "createdAt": "02-10-2026-07:45:00"
+        },
+        {
+            "id": 3,
+            "amount": 45.99,
+            "description": "JavaScript programming book",
+            "category": "books",
+            "createdAt": "03-10-2026-14:20:00"
+        }
+    ]
+}
