@@ -113,7 +113,7 @@ const showData = (data, mark, currency) => {
                         </div>
                         <div class="field hidd" id="${data.id}-others-input">
                             <label for="${data.id}-others">Others</label>
-                            <input type="text" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Only letters, spaces and hyphens '-'" id="${data.id}-others" placeholder="Others: Clothing">
+                            <input type="text" pattern="^[A-Za-z]+(?:[ \\-][A-Za-z]+)*$" title="Only letters, spaces and hyphens '-'" id="${data.id}-others" placeholder="Others: Clothing">
                         </div>
                         <button type="submit" onClick="editTransaction(${data.id})" class="primary">Submit</button>
                     </form>

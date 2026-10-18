@@ -69,6 +69,14 @@ div.form-container {
   overflow-y: auto;
 }
 
+.error {
+  margin: top;
+  background-color: #ffd1d1;
+  padding: 12px;
+  border: 1px solid #ff2222;
+  color: #ff0000;
+}
+
 .hidden {
   transform: translateX(400px);
   display: none;

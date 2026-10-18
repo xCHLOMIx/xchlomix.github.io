@@ -4,6 +4,7 @@ const form_container = document.getElementById("form-container");
 const form = document.getElementById("form");
 const exportButton = document.getElementById("export");
 const options = document.getElementById("options");
+const error = document.getElementById("error");
 
 form_trigger.addEventListener("click", () => {
     form_container.classList.remove("hidden");
@@ -25,9 +26,16 @@ const formHandle = () => {
     const fees = document.getElementById("fees");
     const others = document.getElementById("others");
     const date = new Date();
+    const advancedReg = /\b(\w+)\s+\1\b/;
+
+    if (advancedReg.test(name.value)) {
+        error.innerText = "Names can't have duplicate words."
+        error.classList.remove("hidd");
+        return;
+    }
 
     const budget = {
-        id: data == null || data.budgets == null ? 1 : data.budgets[data.budgets.length - 1].id + 1,
+        id: data == null || data.budgets == null || data.budgets.length == 0 ? 1 : data.budgets[data.budgets.length - 1].id + 1,
         name: name.value,
         start_date: start_date.value,
         end_date: end_date.value,
@@ -47,6 +55,7 @@ const formHandle = () => {
         data.budgets.push(budget);
         localStorage.setItem("data", JSON.stringify(data));
     }
+
     name.value = "";
     start_date.value = "";
     end_date.value = "";
@@ -58,6 +67,8 @@ const formHandle = () => {
     others.value = "";
     const newData = JSON.parse(localStorage.getItem("data")) || null;
     if (newData.budgets != null) showData(newData.budgets, "", data.currency || "$");
+    error.innerText = "";
+    error.classList.add("hidd");
     form_container.classList.add("hidden");
     exportButton.classList.remove("hid");
 }
@@ -72,14 +83,14 @@ const showData = (data, mark, currency) => {
     const htmlCode = data.map((data) => `
         <tr>
             <td>${(mark && mark.includes(data) ? "<mark>" + data.name + "</mark>" : data.name)}</td>
-            <td>${currency || "$"} ${data.food}</td>
-            <td>${currency || "$"} ${data.books}</td>
-            <td>${currency || "$"} ${data.transport}</td>
-            <td>${currency || "$"} ${data.entertainment}</td>
-            <td>${currency || "$"} ${data.fees}</td>
-            <td>${currency || "$"} ${data.others}</td>
-            <td>${currency || "$"} ${data.start_date}</td>
-            <td>${currency || "$"} ${data.end_date}</td>
+            <td>${currency || "$"}${data.food}</td>
+            <td>${currency || "$"}${data.books}</td>
+            <td>${currency || "$"}${data.transport}</td>
+            <td>${currency || "$"}${data.entertainment}</td>
+            <td>${currency || "$"}${data.fees}</td>
+            <td>${currency || "$"}${data.others}</td>
+            <td>${data.start_date}</td>
+            <td>${data.end_date}</td>
             <td>
                 <div class="del-pop hidden-pop" id="${data.id}">
                     <div class="message-container">
@@ -98,9 +109,10 @@ const showData = (data, mark, currency) => {
                         </button>
                     </div>
                     <form id="${data.id}-form">
+                        <div class="error hidd" id="${data.id}-error"></div>
                         <div class="field">
                             <label for="${data.id}-name">Budget name:</label>
-                            <input type="text" pattern="^[A-Za-z]+(?:[ \-][A-Za-z]+)*$" title="Names can only contain letters, spaces and hyphens '-'" value="${data.name}" name="${data.id}-name" id="${data.id}-name" placeholder="Ex: June Budget" required>
+                            <input type="text" pattern="^[A-Za-z]+(?:[ \\-][A-Za-z]+)*$" title="Names can only contain letters, spaces and hyphens '-'" value="${data.name}" name="${data.id}-name" id="${data.id}-name" placeholder="Ex: June Budget" required autocomplete="name">
                         </div>
                         <div class="group">
                             <div class="field">
@@ -201,7 +213,15 @@ const editBudget = (id) => {
         const entertainment = document.getElementById(`${id}-entertainment`);
         const fees = document.getElementById(`${id}-fees`);
         const others = document.getElementById(`${id}-others`);
+        const error = document.getElementById(`${id}-error`);
+        const advancedReg = /\b(\w+)\s+\1\b/;
         const date = new Date();
+
+        if (advancedReg.test(name.value)) {
+            error.innerText = "Names can't have duplicate words.";
+            error.classList.remove("hidd");
+            return;
+        }
 
         let budget = data.budgets.find((item) => item.id == id);
 
@@ -220,8 +240,10 @@ const editBudget = (id) => {
         data = { ...data, budgets: data.budgets.filter((item) => item.id != id) };
         data.budgets = [...data.budgets, budget];
         data.budgets = data.budgets.sort((a, b) => a.id - b.id);
-        showData(data.budgets, "", data.currency || $);
-        closeEditForm(id)
+        error.innerText = "";
+        error.classList.add("hidd");
+        showData(data.budgets, "", data.currency || "$");
+        closeEditForm(id);
         localStorage.setItem("data", JSON.stringify(data));
     });
 }
