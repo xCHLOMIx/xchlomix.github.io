@@ -127,29 +127,29 @@ const showData = (data, mark, currency) => {
                         <div class="group">
                             <div class="field">
                                 <label for="${data.id}-food">Food budget ($)</label>
-                                <input type="number" value="${parseFloat(data.food)}" name="${data.id}-food" id="${data.id}-food" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 500" required>
+                                <input type="number" value="${parseFloat(data.food)}" name="${data.id}-food" id="${data.id}-food" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 500" required>
                             </div>
                             <div class="field">
                                 <label for="${data.id}-books">Books budget($)</label>
-                                <input type="number" value="${parseFloat(data.books)}" name="${data.id}-books" id="${data.id}-books" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 500" required>
+                                <input type="number" value="${parseFloat(data.books)}" name="${data.id}-books" id="${data.id}-books" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 500" required>
                             </div>
                         </div>
                         <div class="field">
                             <label for="${data.id}-transport">Transport budget ($)</label>
-                            <input type="number" value="${parseFloat(data.transport)}" name="${data.id}-transport" id="${data.id}-transport" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 5" required>
+                            <input type="number" value="${parseFloat(data.transport)}" name="${data.id}-transport" id="${data.id}-transport" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 5" required>
                         </div>
                         <div class="field">
                             <label for="entertainment">Entertainment budget ($)</label>
-                            <input type="number" value="${parseFloat(data.entertainment)}" name="${data.id}-entertainment" id="${data.id}-entertainment" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 3" required>
+                            <input type="number" value="${parseFloat(data.entertainment)}" name="${data.id}-entertainment" id="${data.id}-entertainment" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 3" required>
                         </div>
                         <div class="group">
                             <div class="field">
                                 <label for="${data.id}-fees">Fees budget ($)</label>
-                                <input type="number" value="${parseFloat(data.fees)}" name="fees" id="${data.id}-fees" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 660" required>
+                                <input type="number" value="${parseFloat(data.fees)}" name="fees" id="${data.id}-fees" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 660" required>
                             </div>
                             <div class="field">
                                 <label for="${data.id}-others">Others ($)</label>
-                                <input type="number" value="${parseFloat(data.others)}" name="others" id="${data.id}-others" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" title="Must be a numeric value" placeholder="Example: 40" required>
+                                <input type="number" value="${parseFloat(data.others)}" name="others" id="${data.id}-others" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 40" required>
                             </div>
                         </div>
                         <button type="submit" class="primary" onClick="editBudget(${data.id})">Submit</button>
