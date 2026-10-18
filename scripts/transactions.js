@@ -91,7 +91,7 @@ const showData = (data, mark, currency) => {
                     <form id="${data.id}-form">
                         <div class="field">
                             <label for="${data.id}-amount">Amount ($):</label>
-                            <input type="number" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" value=${parseFloat(data.amount)} id="${data.id}-amount" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 500"required>
+                            <input type="text" pattern="^(0|[1-9]\\d*)(\\.\\d{1,2})?$" value=${parseFloat(data.amount)} id="${data.id}-amount" title="Must be a numeric value with max 2 decimal places" placeholder="Example: 500"required>
                         </div>
                         <div class="field">
                             <label for="${data.id}-description">Description:</label>
