@@ -76,6 +76,10 @@ a {
   background: white;
 }
 
+#git-account:hover {
+  background: white;
+}
+
 #about button.primary {
   display: flex;
   align-items: center;
