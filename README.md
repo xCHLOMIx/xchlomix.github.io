@@ -1,2 +1,2 @@
-# This is the starter README
+# Fynance - 
 - Will update later :)
