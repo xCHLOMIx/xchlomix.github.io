@@ -395,5 +395,5 @@ exportButton.addEventListener("click", async () => {
 
     let stream = await exportHandle.createWritable();
     await stream.write(data);
-    await stream.close;
+    await stream.close();
 });
