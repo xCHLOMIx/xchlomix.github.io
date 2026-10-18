@@ -95,7 +95,7 @@ const showData = (data, mark, currency) => {
                         </div>
                         <div class="field">
                             <label for="${data.id}-description">Description:</label>
-                            <input type="text" value="${data.description}" pattern="^\\S(?:.*\\S)?$" title="No trailing spaces allowed." minlength="5" id="${data.id}-description" placeholder="Example: Lunch at KFC" required>
+                            <input type="text" value="${data.description}" pattern="^\\S(?:.*\\S)?$" title="No trailing/leading spaces or collapse doubles allowed." minlength="5" id="${data.id}-description" placeholder="Example: Lunch at KFC" required>
                         </div>
                         <div class="selects" id="select_container">
                             <div class="field">
