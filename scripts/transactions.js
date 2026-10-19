@@ -22,14 +22,14 @@ const formHandle = () => {
     const date = new Date();
 
     const transaction = {
-        id: data == null || data.transactions == null ? 1 : data.transactions[data.transactions.length - 1].id + 1,
+        id: data == null || data.transactions == null || data.transactions.length == 0 ? 1 : data.transactions[data.transactions.length - 1].id + 1,
         amount: parseFloat(amount.value),
         description: description.value,
         category: category.value == "other" ? othersInput.value : category.value,
         createdAt: `${String(date.getDate()).padStart(2, "0")}-${String(date.getMonth()).padStart(2, "0")}-${String(date.getFullYear()).padStart(2, "0")}-${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`
     };
 
-    if (data == null || data.transactions == null) {
+    if (data == null || data.transactions == null || data.transactions.length == 0) {
         data = { ...data, transactions: [transaction] };
         localStorage.setItem("data", JSON.stringify(data));
     } else {
@@ -325,7 +325,7 @@ importBtn.addEventListener("click", async () => {
     if (verifyJSON(json)) {
         let data = JSON.parse(localStorage.getItem("data")) || null;
 
-        if (data == null || data.transactions == null) {
+        if (data == null || data.transactions == null || data.transactions.length == 0) {
             data = { ...data, transactions: json };
         } else {
             let newJSON = json;

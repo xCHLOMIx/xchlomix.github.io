@@ -48,7 +48,7 @@ const formHandle = () => {
         others: parseFloat(others.value)
     }
 
-    if (data == null || data.budgets == null) {
+    if (data == null || data.budgets == null || data.budgets.length == 0) {
         data = { ...data, budgets: [budget] };
         localStorage.setItem("data", JSON.stringify(data));
     } else {
@@ -360,7 +360,7 @@ importButton.addEventListener("click", async () => {
     if (verifyJSON(json)) {
         let data = JSON.parse(localStorage.getItem("data")) || null;
 
-        if (data == null || data.budgets == null) {
+        if (data == null || data.budgets == null || data.budgets.length == 0) {
             data = { ...data, budgets: json };
         } else {
             let newJSON = json;
